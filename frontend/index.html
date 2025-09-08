@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CourseHub Infinity - Nơi tri thức là vô hạn và miễn phí</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <header>
+        <nav>
+            <div class="logo">CourseHub∞</div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary cursor-pointer" id="adminPanelBtn" style="display: none;">
+                    <i class="fas fa-user-shield"></i> Admin Panel
+                </button>
+                <button class="btn btn-primary cursor-pointer" id="uploadBtn" disabled>
+                    <i class="fas fa-plus"></i> Đăng tải khóa học
+                </button>
+                <div id="user-actions">
+                    </div>
+                <button class="theme-toggle cursor-pointer" id="themeToggle" title="Đổi giao diện">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1 class="pulse">CourseHub Infinity</h1>
+            <p>🚀 Nơi tri thức là vô hạn và miễn phí 🚀</p>
+        </section>
+
+        <section class="search-section">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input cursor-pointer" placeholder="Tìm kiếm khóa học... (Ctrl+K)" id="searchInput">
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">
+                <i class="fas fa-fire"></i>
+                Khóa học nổi bật
+            </h2>
+            <div class="course-grid" id="courseGrid">
+                </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">
+                <i class="fas fa-clock"></i>
+                Mới nhất
+            </h2>
+            <div class="course-grid" id="recentCourses">
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p><i class="fas fa-heart" style="color: #ff6b6b;"></i> Made with love by the dev community</p>
+            <p>© 2024 CourseHub Infinity. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <button class="modal-close cursor-pointer"><i class="fas fa-times"></i></button>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active cursor-pointer" data-tab="login">Đăng nhập</button>
+                <button class="auth-tab cursor-pointer" data-tab="register">Đăng ký</button>
+            </div>
+
+            <form id="loginForm" class="auth-form active">
+                <div class="form-group">
+                    <label for="loginIdentifier">Email hoặc Tên đăng nhập</label>
+                    <input type="text" id="loginIdentifier" required placeholder="chung@coursehub.com hoặc ChungHo">
+                </div>
+                 <div class="form-group">
+                    <label for="loginPassword">Mật khẩu</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary cursor-pointer" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i> Đăng nhập
+                </button>
+            </form>
+
+            <form id="registerForm" class="auth-form">
+                 <div class="form-group">
+                    <label for="registerUsername">Tên đăng nhập</label>
+                    <input type="text" id="registerUsername" required placeholder="vd: chunghochoi">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Mật khẩu</label>
+                    <input type="password" id="registerPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary cursor-pointer" style="width: 100%;">
+                    <i class="fas fa-user-plus"></i> Đăng ký
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <button class="modal-close cursor-pointer"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title"><i class="fas fa-upload"></i> Đăng tải khóa học mới</h3>
+            <form id="uploadForm">
+                <div class="form-group">
+                    <label for="courseTitle">Tên khóa học</label>
+                    <input type="text" id="courseTitle" required placeholder="VD: Lập trình JavaScript nâng cao">
+                </div>
+                <div class="form-group">
+                    <label for="courseLink">Link khóa học</label>
+                    <input type="url" id="courseLink" required placeholder="https://youtube.com/playlist?list=...">
+                </div>
+                <div class="form-group">
+                    <label for="courseCategory">Danh mục</label>
+                    <select id="courseCategory" required>
+                        <option value="Frontend">Frontend</option>
+                        <option value="Backend">Backend</option>
+                        <option value="Mobile">Mobile</option>
+                        <option value="AI/ML">AI/ML</option>
+                        <option value="DevOps">DevOps</option>
+                        <option value="Database">Database</option>
+                        <option value="UI/UX">UI/UX</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary cursor-pointer" style="width: 100%;">
+                    <i class="fas fa-check"></i> Đăng tải ngay
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="adminModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <button class="modal-close cursor-pointer"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title"><i class="fas fa-user-shield"></i> Quản lý người dùng</h3>
+            <div id="userList" class="user-list">
+                </div>
+        </div>
+    </div>
+    
+    <div id="notification-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
